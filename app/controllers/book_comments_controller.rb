@@ -1,5 +1,7 @@
 class BookCommentsController < ApplicationController
-
+  include Common
+  before_action :set_search_window
+  
   def create
     @book_comment = BookComment.new(book_comment_params)
     # binding.pry

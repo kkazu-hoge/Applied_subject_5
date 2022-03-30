@@ -1,24 +1,18 @@
 <nav class="navbar navbar-expand-md bg-da">
   <div class="container">
-      <form class="form-inline ml-auto">
-          <div class="form-group">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          </div>
-          <div class="form-group mr-2">
-            <select id="inputState" class="form-control">
-              <option selected>Choose...</option>
-              <option>...</option>
-            </select>
-          </div>
-          <div class="form-group mr-2">
-            <select id="inputState" class="form-control">
-              <option selected>Choose...</option>
-              <option>...</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          </div>
-      </form>
+  <%= form_with url: users_path, method: :get, class: "form-inline ml-auto", local: true do |form| %>
+    <%= form.text_field :search_text, class: "form-group form-control mr-sm-2", placeholder: "入力欄" %>
+    <%= form.select :search_clf,
+      options_for_select(header_search_clf),                                #プルダウンの選択肢を配列で指定
+      { selected: 1 },                                                      #初期値はvalueが1の区分
+      { id: "header_search_clf", class: "form-group form-control mr-2"}    #htmlオプション
+    %>
+    <%= form.select :search_tgt_clf,
+      options_for_select(header_search_tgt_clf),
+      { selected: 1 },
+      { id: "header_search_tgt_clf", class: "form-group form-control mr-2"}
+    %>
+    <%= form.submit '検索', name: nil, class: "btn btn-outline-success my-2 my-sm-0" %>
+  <% end %>
   </div>
 </nav>
