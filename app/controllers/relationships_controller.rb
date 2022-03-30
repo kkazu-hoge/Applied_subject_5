@@ -1,4 +1,6 @@
 class RelationshipsController < ApplicationController
+  include Common
+  before_action :set_search_window
 
   def create
     # binding.pry

@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  include Common
+  before_action :set_search_window
   before_action :ensure_correct_user, only: [:update, :edit]
 
   def show
