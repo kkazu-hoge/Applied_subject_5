@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       get :follower_index, on: :collection
     end
   end
+
   resources :books, only: [:index,:show,:edit,:create,:destroy,:update] do
     # get :search, on: :collection (自作アクションを作成した場合にルーティング紐づけ idなし)
     # get :search, on: :member(自作アクションを作成した場合にルーティング紐づけ idあり)
@@ -19,6 +20,9 @@ Rails.application.routes.draw do
     resources :book_comments, only: [:create, :destroy]
   end
 
+  resources :searches, only: [:search] do
+    get :search, on: :collection
+  end
   # resources :books, only: [:index,:show,:edit,:create,:destroy,:update], concerns: [:favoritable, :book_commentable]
   # concern :favoritable do
   #   resources :favorites, only: [:create, :destroy]
@@ -68,6 +72,5 @@ end
           # user_relationship DELETE /users/:user_id/relationships/:id(.:format)   relationships#destroy
 # follow_index_user_relationships GET    /users/:user_id/relationships/follow_index(.:format)    relationships#follow_index
 # follower_index_user_relationships GET  /users/:user_id/relationships/follower_index(.:format)  relationships#follower_index
-          
-          
-          
+
+
