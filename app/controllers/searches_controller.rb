@@ -1,7 +1,6 @@
 class SearchesController < ApplicationController
   include Common
   before_action :set_search_window
-
   include CommonMdl
 
   def search
